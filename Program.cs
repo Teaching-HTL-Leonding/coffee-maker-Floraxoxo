@@ -1,4 +1,6 @@
-﻿Console.Clear();
+﻿Console.OutputEncoding = System.Text.Encoding.Default;
+
+Console.Clear();
 Console.ResetColor();
 
 const decimal CAPPUCCINO = 3.5m; //price of the products
@@ -29,8 +31,14 @@ do
 
 do
 {
-    Console.WriteLine("What do you want to buy?"); Console.Write("A [Cappuccino] 3.50€, "); Console.Write("A [Cacao] 2.50€, "); Console.Write("a cup of [Tea] 1.50€ "); Console.WriteLine("or [nothing]");
-    coffee_type = Console.ReadLine()!.ToLower();
+    Console.WriteLine("What do you want to buy?");
+    Console.ForegroundColor = ConsoleColor.DarkYellow; Console.Write("A [Cappuccino] ☕ 3.5€, "); 
+    Console.ForegroundColor = ConsoleColor.DarkBlue; Console.Write("A [Cacao] 🥛 2.5€, "); 
+    Console.ForegroundColor = ConsoleColor.DarkGreen; Console.Write("a cup of [Tea] 🍵 1.5€ "); 
+    Console.ForegroundColor = ConsoleColor.DarkRed; Console.WriteLine("or [nothing]");
+    Console.ResetColor(); coffee_type = Console.ReadLine()!.ToLower();
+
+    Console.ResetColor();
 
     switch (coffee_type)
     {
@@ -59,9 +67,9 @@ do
 
 } while (coffee_type != "nothing" && enough_money == true);
 
-if (money > 0)
+if (money!= 0)
 {
-    Console.WriteLine($"You get {money}$ back");
+    Console.ForegroundColor = ConsoleColor.Green; Console.WriteLine($"You get {money}$ back 😎"); Console.ResetColor();
     if (money / 2 >= 1)
     {
         two_coins = Math.Floor(money / 2); money -= two_coins * 2;
@@ -82,7 +90,7 @@ if (money > 0)
 }
 else
 {
-    Console.WriteLine("You don't get any money back");
+    Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("You don't get any money back 🥰");
 }
 
 Console.ReadKey();
